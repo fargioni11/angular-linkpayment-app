@@ -1,6 +1,3 @@
-
-¡Claro que sí! Aquí tienes un README.md profesional para tu aplicación de generación de links de pago. Este archivo explica el propósito, las características, los requisitos de instalación y cómo usar la app.
-
 Angular Payment Link App
 Descripción 📖
 Esta es una aplicación desarrollada con Angular (Frontend) y Node.js (Backend) que permite a los usuarios generar links de pago a través de Stripe y compartirlos mediante WhatsApp, SMS o correo electrónico. Está diseñada para ser responsiva, intuitiva y fácil de usar.
@@ -132,9 +129,6 @@ src/
 ├── models/
 ├── routes/
 └── utils/
-Demo en GitHub Pages 🌐
-Accede a la aplicación desplegada:
-Angular Payment Link App
 
 Mejoras Futuras 🚀
 Implementar Twilio para enviar mensajes de WhatsApp directamente desde el backend.

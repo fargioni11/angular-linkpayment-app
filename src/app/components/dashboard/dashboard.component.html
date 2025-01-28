@@ -1,0 +1,72 @@
+<div class="dashboard-container">
+    <mat-card>
+      <mat-card-title>Generar Links de Pago</mat-card-title>
+      <mat-card-content>
+        <form [formGroup]="dashboardForm" (ngSubmit)="onGenerateLinks()">
+          <!-- Input para el monto -->
+          <mat-form-field appearance="outline">
+            <mat-label>Monto Total</mat-label>
+            <input matInput type="number" formControlName="amount" />
+            <mat-error *ngIf="dashboardForm.get('amount')?.hasError('required')">
+              El monto es obligatorio
+            </mat-error>
+          </mat-form-field>
+  
+          <!-- Input para la cantidad de personas -->
+          <mat-form-field appearance="outline">
+            <mat-label>Cantidad de Personas a dividir</mat-label>
+            <input matInput type="number" formControlName="peopleCount" />
+            <mat-error *ngIf="dashboardForm.get('peopleCount')?.hasError('required')">
+              La cantidad de personas es obligatoria
+            </mat-error>
+          </mat-form-field>
+  
+          <!-- Inputs para los contactos -->
+          <mat-form-field appearance="outline" *ngFor="let contact of contacts; let i = index">
+            <mat-label>Contacto {{ i + 1 }}</mat-label>
+            <input matInput type="text" [formControlName]="'contact_' + i" placeholder="+549XXXXXXXXXX" />
+            <mat-icon matSuffix (click)="removeContact(i)" style="cursor: pointer;">delete</mat-icon>
+          </mat-form-field>
+          <button mat-stroked-button color="primary" (click)="addContact()" type="button">
+            Agregar Contacto
+          </button>
+  
+          <!-- Botón para generar los links -->
+          <button mat-raised-button color="accent" type="submit" class="send-whatsapp-button" [disabled]="dashboardForm.invalid">
+            Generar Links
+          </button>
+        </form>
+      </mat-card-content>
+    </mat-card>
+  
+    <!-- Botón para enviar por WhatsApp -->
+    <!-- <div class="generated-links-container" *ngIf="links.length > 0">
+        <h2>Links Generados:</h2>
+        <ul class="links-list">
+          <li *ngFor="let link of links">
+            <a [href]="link.url" target="_blank" class="shortened-link">
+              {{ getShortenedLink(link.url) }}
+            </a>
+            <span class="contact-info">({{ link.contact }})</span>
+          </li>
+        </ul>
+        <button mat-raised-button color="primary" class="send-whatsapp-button" (click)="onSendWhatsApp()">
+          Enviar Links por WhatsApp
+        </button>
+      </div> -->
+      <div class="generated-links-container" *ngIf="links.length > 0">
+        <h2>Links Generados:</h2>
+        <ul class="links-list">
+          <li *ngFor="let link of links">
+            <a [href]="link.url" target="_blank" class="shortened-link">
+              {{ getShortenedLink(link.url) }}
+            </a>
+            <button mat-button color="primary" (click)="onShareLink(link)">
+              Compartir
+            </button>
+          </li>
+        </ul>
+      </div>
+      
+  </div>
+  

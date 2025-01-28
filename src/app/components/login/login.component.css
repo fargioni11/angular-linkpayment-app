@@ -1,0 +1,11 @@
+mat-card-title {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 20px;
+    color: white;
+}
+.register-link {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+}
